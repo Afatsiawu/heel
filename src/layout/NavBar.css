@@ -1,0 +1,223 @@
+.nav-bar {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 2rem;
+  height: 64px;
+  width: 100%;
+  background: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-bar__brand {
+  color: var(--accent);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-bar__menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-bar__section {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-bar__section--links {
+  margin-left: 0.5rem;
+}
+
+.nav-bar__link {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-bar__link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-bar__link.active {
+  color: var(--accent);
+  background: rgba(184, 139, 26, 0.12);
+}
+
+.nav-bar__admin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: var(--text);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 0.18s ease;
+}
+
+.nav-bar__admin:hover { filter: brightness(0.92); }
+.nav-bar__admin.active { filter: brightness(0.88); }
+
+/* ── HAMBURGER TOGGLE ── */
+.nav-bar__toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-shrink: 0;
+}
+
+.nav-bar__toggle-line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 3px 0;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-bar__toggle--open .nav-bar__toggle-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-bar__toggle--open .nav-bar__toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-bar__toggle--open .nav-bar__toggle-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── OVERLAY ── */
+.nav-bar__overlay {
+  position: fixed;
+  inset: 64px 0 0;
+  z-index: 85;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-bar__overlay--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── TABLET ── */
+@media (max-width: 820px) {
+  .nav-bar {
+    padding: 0 1.25rem;
+  }
+
+  .nav-bar__toggle {
+    display: inline-flex;
+  }
+
+  .nav-bar__menu {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.85rem 1.25rem;
+    background: var(--text);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav-bar__menu--open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-bar__section {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .nav-bar__section--links {
+    margin-left: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .nav-bar__section--actions {
+    padding-top: 0;
+  }
+
+  .nav-bar__link {
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+  }
+
+  .nav-bar__admin {
+    width: auto;
+    padding: 0.5rem 0.9rem;
+  }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 520px) {
+  .nav-bar {
+    padding: 0 1rem;
+  }
+
+  .nav-bar__brand {
+    font-size: 1.1rem;
+  }
+
+  .nav-bar__menu {
+    padding: 0.85rem 1rem;
+  }
+
+  .nav-bar__link {
+    font-size: 0.7rem;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .nav-bar__admin {
+    font-size: 0.7rem;
+    padding: 0.45rem 0.75rem;
+  }
+}
